@@ -1,6 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
+
+@if (Auth::user()->pemesanan->where('is_bayar' , 0)->count() !== 0)
+    <div class="alert alert-warning" role="alert">
+    Anda sudah mendaftar. Silahkan lakukan pembayaran terlebih dahulu.
+    </div>
+@endif
+
 <form action="{{asset('/pendaftaran/store')}}" method="POST">
     @csrf
     <fieldset>
@@ -8,23 +15,25 @@
 
         <div class="form-group row">
             <div class="col-md-6">
-                <label for="kelas">Kelas</label>
-                <select id="kelas" name="id_kelas" class="form-control">
-                    <option value="">--Pilih kelas--</option>
-                    @foreach($kelas as $kelas)
-                    <option value="{{$kelas->id}}">{{$kelas->nama_kelas}}</option>
+                <label for="kelas">Jadwal</label>
+                <select id="jadwal" name="id_jadwal" class="form-control">
+                    <option value="">--Pilih Jadwal--</option>
+                    @foreach($jadwal as $jadwal)
+                    @if ($jadwal->tanggal > $date )
+                    <option value="{{$jadwal->id}}"> {{$jadwal->hari}} | {{$jadwal->tanggal}} | {{$jadwal->jam}}</option>
+                    @endif
                     @endforeach
                 </select>
             </div>
         </div>
 
-        <div class="form-group row">
+         <div class="form-group row">
             <div class="col-md-6">
-                <label for="kelas">Jadwal</label>
-                <select id="jadwal" name="id_jadwal" class="form-control">
-                    <option value="">--Pilih Jadwal--</option>
-                    @foreach($jadwal as $jadwal)
-                    <option value="{{$jadwal->id}}"> {{$jadwal->hari}} | {{$jadwal->tanggal}} | {{$jadwal->jam}}</option>
+                <label for="kelas">Kelas</label>
+                <select id="kelas" name="id_kelas" class="form-control">
+                    <option value="">--Pilih kelas--</option>
+                    @foreach($kelas as $kelas)
+                    <option value="{{$kelas->id}}">{{$kelas->nama_kelas}}</option>
                     @endforeach
                 </select>
             </div>
@@ -44,4 +53,8 @@
         <hr>
     </fieldset>
 </form>
+@endsection
+
+@section('title')
+    Pendaftaran
 @endsection

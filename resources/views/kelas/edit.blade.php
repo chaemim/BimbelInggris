@@ -20,3 +20,7 @@
     </fieldset>
 </form>
 @endsection
+
+@section('title')
+    Edit Data Kelas
+@endsection

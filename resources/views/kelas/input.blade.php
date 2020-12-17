@@ -11,7 +11,7 @@
                 <input id="nama" type="text" name="nama_kelas" class="form-control">
             </div>
         </div>
-       
+
         <div class="col-md-10">
             <input type="submit" class="btn btn-success btn-send" value="Simpan">
             <input type="Button" class="btn btn-primary btnsend" value="Kembali" onclick="history.go(-1)">
@@ -19,4 +19,8 @@
         <hr>
     </fieldset>
 </form>
+@endsection
+
+@section('title')
+    Input Data Kelas
 @endsection

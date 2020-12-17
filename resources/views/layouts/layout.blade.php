@@ -7,7 +7,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Beranda</title>
+  <title>@yield('title')</title>
+  <link rel="shortcut icon" href="{{asset('/home/images/logo2.jpg')}}">
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -15,6 +16,7 @@
   <!-- Custom styles for this template-->
   <link href="{{asset('asset/css/sb-admin-2.min.css')}}" rel="stylesheet">
   <link href="{{asset('asset/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+  @yield('css')
 </head>
 
 <body id="page-top">
@@ -26,7 +28,7 @@
     <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/beranda">
         <div class="sidebar-brand-icon rotate-n-0">
           <img src="{{asset('asset/img/logo.jpg')}}" width="60">
         </div>
@@ -75,39 +77,55 @@
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="/kelas">
-          <i class="fas fa-fw fa-table"></i>
+          <i class="fas fa-fw fa-building"></i>
           <span>Kelas</span></a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/jadwal">
-          <i class="fas fa-fw fa-archive"></i>
+          <i class="fas fa-fw fa-table"></i>
           <span>Jadwal</span></a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/pembayaran">
-          <i class="fas fa-fw fa-archive"></i>
+          <i class="fas fa-fw fa-address-card"></i>
           <span>Pembayaran</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/pendaftaran">
-          <i class="fas fa-fw fa-archive"></i>
-          <span>Pendaftaran</span></a>
+        <a class="nav-link" href="/user">
+          <i class="fas fa-fw fa-user"></i>
+          <span>User</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/laporan">
+          <i class="fas fa-fw fa-server"></i>
+          <span>Laporan</span></a>
       </li>
       @else
 
       <li class="nav-item">
         <a class="nav-link" href="/pendaftaran">
-          <i class="fas fa-fw fa-archive"></i>
+          <i class="fas fa-fw fa-file"></i>
           <span>Pendaftaran</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/pembayaranuser">
-          <i class="fas fa-fw fa-archive"></i>
-          <span>Pembayaran</span></a>
+        <a class="nav-link" href="/user/pembayaran">
+          <i class="fas fa-fw fa-address-card"></i>
+          <span>Pembayaran</span>
+          @if (Auth::user()->pemesanan->where('is_bayar' , 0)->count() !== 0)
+          <span class="badge badge-pill badge-secondary">{{Auth::user()->pemesanan->where('is_bayar' , 0)->count()}}</span>
+          @endif
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/user/riwayat">
+          <i class="fas fa-fw fa-history"></i>
+          <span>Riwayat</span></a>
       </li>
 
       @endif
@@ -178,7 +196,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/profil">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -216,7 +234,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Create By: Fariqotun Nisa<br>Copyright &copy; Your Website 2020</span>
+            <span>Copyright &copy; English Course & Bimbel 2020</span>
           </div>
         </div>
       </footer>
@@ -277,5 +295,6 @@
   <script src="{{asset('asset/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{asset('asset/js/demo/chart-pie-demo.js')}}"></script>
   <script src="{{asset('asset/js/demo/datatables-demo.js')}}"></script>
+  @yield('script')
 </body>
 </html>

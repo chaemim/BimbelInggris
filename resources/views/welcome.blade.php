@@ -11,6 +11,7 @@
 
     <!-- Site Metas -->
     <title>English Course & Bimbel di Learning Education Center (SIPSLEC)</title>
+    <link rel="shortcut icon" href="{{asset('/home/images/logo2.jpg')}}">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -63,17 +64,17 @@
                         <li><a class="nav-link active" href="#home">Home</a></li>
                         <li><a class="nav-link" href="#about">About</a></li>
                         <li><a class="nav-link" href="#contactus">Contact us</a></li>
-                    
+
                     @if (Route::has('login'))
                     @auth
                       <li><a class="nav-link" href="/beranda">{{Auth::user()->name}}</a></li>
                     @else
-                        <li><a class="nav-link" href="/register">Register</a></li>
+                        <li><a class="nav-link" href="/registeruser">Register</a></li>
                         @if (Route::has('register'))
                         <li><a class="nav-link" href="/login">login</a></li>
                         @endif
                     @endauth
-            
+
             @endif
 
                     </ul>
@@ -138,7 +139,7 @@
                            <h2><span>Selamat Datang</span>
                            <br> English Course & Bimbel di Learning Education Center (SIPSLEC)</h2>
                         </div>
-					
+
                     </div>
                 </div>
 				<div class="col-md-6">
@@ -150,7 +151,7 @@
         </div>
     </div>
 	<!-- end section -->
-	
+
 	<!-- section -->
     <div class="section margin-top_50 silver_bg" id="about">
         <div class="container">
@@ -181,7 +182,7 @@
     </div>
 	<!-- end section -->
 
-	
+
 	<!-- section -->
     <div class="section layout_padding padding_bottom-0" id="contactus">
         <div class="container">
@@ -229,29 +230,29 @@
 						</form>
 					</div>
                  </div>
-               </div>			  
+               </div>
            </div>
         </div>
 	<!-- end section -->
     <!-- Start Footer -->
     <footer class="footer-box">
         <div class="container">
-		
+
 		   <div class="row">
-		   
+
 		      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			     <div class="footer_blog">
 				    <div class="full margin-bottom_30">
 					   <img src="home/images/logo3.jpg" alt="#" />
 					 </div>
 					 <div class="full white_fonts">
-					    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+					    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
 					 </div>
 				 </div>
 			  </div>
-			  
-			  
+
+
 			  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 				 <div class="footer_blog full white_fonts">
 						     <h3>Contact us</h3>
@@ -261,10 +262,10 @@
 							   <li><img src="/home/images/i7.png"><span>083839438046</span></li>
 							 </ul>
 						 </div>
-					</div>	 
-			  
+					</div>
+
 		   </div>
-		
+
         </div>
     </footer>
     <!-- End Footer -->
@@ -301,7 +302,7 @@
 (function ($) {
 	$.fn.countTo = function (options) {
 		options = options || {};
-		
+
 		return $(this).each(function () {
 			// set options for current element
 			var settings = $.extend({}, $.fn.countTo.defaults, {
@@ -311,58 +312,58 @@
 				refreshInterval: $(this).data('refresh-interval'),
 				decimals:        $(this).data('decimals')
 			}, options);
-			
+
 			// how many times to update the value, and how much to increment the value on each update
 			var loops = Math.ceil(settings.speed / settings.refreshInterval),
 				increment = (settings.to - settings.from) / loops;
-			
+
 			// references & variables that will change with each update
 			var self = this,
 				$self = $(this),
 				loopCount = 0,
 				value = settings.from,
 				data = $self.data('countTo') || {};
-			
+
 			$self.data('countTo', data);
-			
+
 			// if an existing interval can be found, clear it first
 			if (data.interval) {
 				clearInterval(data.interval);
 			}
 			data.interval = setInterval(updateTimer, settings.refreshInterval);
-			
+
 			// initialize the element with the starting value
 			render(value);
-			
+
 			function updateTimer() {
 				value += increment;
 				loopCount++;
-				
+
 				render(value);
-				
+
 				if (typeof(settings.onUpdate) == 'function') {
 					settings.onUpdate.call(self, value);
 				}
-				
+
 				if (loopCount >= loops) {
 					// remove the interval
 					$self.removeData('countTo');
 					clearInterval(data.interval);
 					value = settings.to;
-					
+
 					if (typeof(settings.onComplete) == 'function') {
 						settings.onComplete.call(self, value);
 					}
 				}
 			}
-			
+
 			function render(value) {
 				var formattedValue = settings.formatter.call(self, value, settings);
 				$self.html(formattedValue);
 			}
 		});
 	};
-	
+
 	$.fn.countTo.defaults = {
 		from: 0,               // the number the element should start at
 		to: 0,                 // the number the element should end at
@@ -373,7 +374,7 @@
 		onUpdate: null,        // callback method for every time the element is updated
 		onComplete: null       // callback method for when the element finishes updating
 	};
-	
+
 	function formatter(value, settings) {
 		return value.toFixed(settings.decimals);
 	}
@@ -386,10 +387,10 @@ jQuery(function ($) {
 	  return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
 	}
   });
-  
+
   // start all the timers
-  $('.timer').each(count);  
-  
+  $('.timer').each(count);
+
   function count(options) {
 	var $this = $(this);
 	options = $.extend({}, options || {}, $this.data('countToOptions') || {});

@@ -17,15 +17,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/registeruser', 'HomeController@registeruser')->name('registeruser');
+Route::post('/simpanregister', 'HomeController@simpanregister')->name('saveregister');
+
 Auth::routes();
 
 
 Route::group(['middleware' => 'auth'] ,  function()
 {
     Route::get('/beranda', 'HomeController@index')->name('home');
+    Route::get('/profil', 'HomeController@profil')->name('profil');
+    Route::post('/gantipassword', 'HomeController@gantipassword');
     Route::get('/pendaftaran', 'PemesananController@daftar');
     Route::post('/pendaftaran/store', 'PemesananController@daftarsimpan');
-    Route::get('/pembayaranuser', 'PemesananController@bayar');
+    Route::get('/user/pembayaran', 'PemesananController@bayar');
+    Route::get('/user/pembayaran/cetak', 'PemesananController@cetakbayar');
+    Route::post('/user/konfirmasipembayaran/{id}', 'PemesananController@konfirmasibayar');
+    Route::get('/user/riwayat', 'PemesananController@riwayat');
+    Route::get('/user/riwayat/detail/{id}', 'PemesananController@detailriwayat');
 });
 
 
@@ -40,4 +49,17 @@ Route::group(['middleware' => 'admin'] ,  function()
     // CRUD Jadwal
     Route::resource( '/jadwal' , 'JadwalController' );
     Route::get('/jadwal/hapus/{kode}','JadwalController@destroy');
+
+    // Pembayaran
+    Route::get('/pembayaran', 'PembayaranController@index');
+    Route::get('/konfirmasipembayaran/{id}', 'PembayaranController@konfirmasibayar');
+    Route::get('/konfirmasi/{id}', 'PembayaranController@konfirmasi');
+    Route::get('/pembayaran/detail/{id}', 'PembayaranController@detailbayar');
+
+    // User
+    Route::get('/user', 'UserController@index');
+
+    // Laporan
+    Route::get('/laporan', 'LaporanController@index');
+    Route::get('/laporan/pendaftaran', 'LaporanController@show');
 });

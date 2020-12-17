@@ -45,4 +45,9 @@ class User extends Authenticatable
 
       return false;
     }
+
+    public function pemesanan()
+    {
+        return $this->hasMany('App\Pemesanan', 'id_user');
+    }
 }

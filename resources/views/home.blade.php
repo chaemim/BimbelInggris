@@ -11,10 +11,21 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    Anda berada pada halaman Home Admin.
+                    @if (Auth::user()->roles_id == 2)
+                        Silahkan lakukan pendaftaran dimenu <a href="/pendaftaran">pendaftaran</a>.<br>
+                        Jika anda sudah mendaftar lakukan pembayaran dimenu <a href="/user/pembayaran">pembayaran</a>.
+                    @endif
+
+                    @if (Auth::user()->roles_id == 1)
+                        Selamat Datang di halaman home admin.
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('title')
+    Beranda
 @endsection

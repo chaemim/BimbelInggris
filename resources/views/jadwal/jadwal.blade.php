@@ -47,3 +47,7 @@
     </div>
 </div>
 @endsection
+
+@section('title')
+    Jadwal
+@endsection

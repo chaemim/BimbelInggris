@@ -26,3 +26,7 @@
     </fieldset>
 </form>
 @endsection
+
+@section('title')
+    Edit Data Jadwal
+@endsection

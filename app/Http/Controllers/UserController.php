@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use DB;
 
 class UserController extends Controller
 {
@@ -13,7 +15,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::get();
+         $pemesanan = DB::table('pemesanan')
+            ->join('pembayaran', 'pemesanan.id', '=', 'pembayaran.id_pemesanan')
+            ->join('kelas', 'kelas.id', '=', 'pemesanan.id_kelas')
+            ->join('users', 'users.id', '=', 'pemesanan.id_user')
+            ->join('jadwal', 'jadwal.id', '=', 'pemesanan.id_jadwal')
+            ->select('pemesanan.*', 'pembayaran.*' , 'kelas.nama_kelas' , 'users.*' , 'jadwal.*' , 'pembayaran.id as id_bayar' , 'pemesanan.id as id_pesan')
+            ->get();
+        return view('user.user' , compact('user' , 'pemesanan'));
     }
 
     /**
