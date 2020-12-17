@@ -240,20 +240,22 @@
 
 		   <div class="row">
 
-		      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+		      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 			     <div class="footer_blog">
 				    <div class="full margin-bottom_30">
 					   <img src="home/images/logo3.jpg" alt="#" />
 					 </div>
 					 <div class="full white_fonts">
-					    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+					    <p>Learning Education Center adalah yayasan terdaftar di Indonesia untuk kesempatan pendidikan yang didirikan
+                            oleh Learning Education Center. Ayo jadikan bagian dari kami dan ikuti aktifitas belajar menyenangkan!
+                            Meningkatkan kemampuan bahasa inggris walaupun #DiRumahAja
+                        </p>
 					 </div>
 				 </div>
 			  </div>
 
 
-			  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 offset-lg-4">
 				 <div class="footer_blog full white_fonts">
 						     <h3>Contact us</h3>
 							 <ul class="full">
